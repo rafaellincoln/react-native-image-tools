@@ -223,7 +223,7 @@ public class RNImageToolsModule extends ReactContextBaseJavaModule {
                 String appDirectoryName = "PhotoEditor";
                 File dir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), appDirectoryName);
                 if(!dir.exists()) {
-                    file.mkdirs();
+                    dir.mkdirs();
                 }
                 builder.withOutput(new File(dir, "photoeditor." + UUID.randomUUID().toString() + "." + format.name()));
             } else {
