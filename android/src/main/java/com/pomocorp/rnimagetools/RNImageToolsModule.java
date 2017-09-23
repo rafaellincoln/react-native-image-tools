@@ -382,7 +382,7 @@ public class RNImageToolsModule extends ReactContextBaseJavaModule {
 
         @Override
         void resolve(Uri uri) {
-            WritableNativeMap response = imageData(uri);
+            WritableNativeMap response = uri != null ? imageData(uri) new WritableNativeMap();
             response.putString("uri", uri != null ? uri.toString() : "");
 
             if (callback != null) {
