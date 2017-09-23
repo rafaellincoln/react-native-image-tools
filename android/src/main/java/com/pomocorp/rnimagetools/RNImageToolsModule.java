@@ -220,10 +220,14 @@ public class RNImageToolsModule extends ReactContextBaseJavaModule {
                     .withNoExitConfirmation(true);
 
             if (saveTo.equals("photos")) {
-                File dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
-                builder.withOutput(new File(dir, "rnimagetools." + UUID.randomUUID().toString() + "." + format.name()));
+                String appDirectoryName = "PhotoEditor";
+                File dir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), appDirectoryName);
+                if(!dir.exists()) {
+                    file.mkdirs();
+                }
+                builder.withOutput(new File(dir, "photoeditor." + UUID.randomUUID().toString() + "." + format.name()));
             } else {
-                builder.withOutput(File.createTempFile("rnimagetools.", "." + format.name(), reactContext.getCacheDir()));
+                builder.withOutput(File.createTempFile("photoeditor.", "." + format.name(), reactContext.getCacheDir()));
             }
 
             getReactApplicationContext().startActivityForResult(builder.build(), REQ_CODE_CSDK_IMAGE_EDITOR, null);
